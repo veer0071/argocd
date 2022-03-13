@@ -36,7 +36,7 @@ spec:
       - env:
         - name: BACKEND_API_URL
           value: "localhost"
-        image: veerrk/testing:backend-sample-1
+        image: veerrk/testing:backend-sample-0
         imagePullPolicy: Always
         name: frontend-ui
         ports:
