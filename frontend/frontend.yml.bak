@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: frontend-ui
+  name: frontend-ui
+  namespace: frontend
+spec:
+  ports:
+  - name: "frontend-ui"
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: frontend-ui
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend-ui
+  name: frontend-ui
+  namespace: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-ui
+  template:
+    metadata:
+      labels:
+        app: frontend-ui
+    spec:
+      containers:
+      - env:
+        - name: BACKEND_API_URL
+          value: "http://localhost:8080/cluster/v1/randomString"
+        - name: BACKEND_SVC_URL
+          value: "http://backend-service.backend:8080/cluster/v1/randomString"
+        - name: WELCOME_VAR
+          value: "SYNAOS"
+        image: veerrk/testing:frontend-sample-0
+        imagePullPolicy: Always
+        name: frontend-ui
+        ports:
+        - name: frontend-ui
+          containerPort: 5000
+          protocol: TCP

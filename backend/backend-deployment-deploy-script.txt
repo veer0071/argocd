@@ -1,0 +1,9 @@
+#!/bin/bash
+kubectl config set current-context kind-kind
+kubectl create ns backend
+kubectl config set-context --current --namespace=backend
+cd "C:\Users\000RJS744\Desktop\test\synaos\backend"
+kubectl apply -f backend-service.yml
+sleep 10
+kubectl port-forward svc/backend-service 8080:8080 -n backend
+sleep 10

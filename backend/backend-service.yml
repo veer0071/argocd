@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: backend-service
+  name: backend-service
+  namespace: backend
+spec:
+  ports:
+  - name: "backend-service"
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: backend-service
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: backend-service
+  name: backend-service
+  namespace: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-service
+  template:
+    metadata:
+      labels:
+        app: backend-service
+    spec:
+      containers:
+      - env:
+        - name: BACKEND_API_URL
+          value: "localhost"
+        image: veerrk/testing:backend-sample-0
+        imagePullPolicy: Always
+        name: frontend-ui
+        ports:
+        - name: frontend-ui
+          containerPort: 8080
+          protocol: TCP

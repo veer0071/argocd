@@ -1,0 +1,11 @@
+#!/bin/bash
+kind create cluster
+sleep 15
+kubectl config set current-context kind-kind
+kubectl create ns frontend
+kubectl config set-context --current --namespace=frontend
+cd "C:\Users\000RJS744\Desktop\test\synaos\frontend"
+kubectl apply -f frontend.yml.bak
+sleep 10
+kubectl port-forward svc/frontend-ui 5000:5000 -n frontend
+sleep 10
