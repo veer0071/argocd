@@ -1,4 +1,0 @@
-#!/bin/bash
-kubectl delete deployment frontend-ui -n frontend
-kubectl delete deployments backend-service -n backend
-kind delete cluster
