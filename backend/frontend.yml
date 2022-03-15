@@ -29,6 +29,8 @@ spec:
       app: frontend-ui
   template:
     metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"    
       labels:
         app: frontend-ui
     spec:
