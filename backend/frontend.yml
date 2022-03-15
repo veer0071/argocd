@@ -41,7 +41,7 @@ spec:
         - name: BACKEND_SVC_URL
           value: "http://backend-service.backend:8080/cluster/v1/randomString"
         - name: WELCOME_VAR
-          value: "SYNAOS"
+          value: "Veer"
         image: veerrk/testing:frontend-sample-0
         imagePullPolicy: Always
         name: frontend-ui
