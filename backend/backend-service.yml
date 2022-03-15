@@ -29,8 +29,8 @@ spec:
       app: backend-service
   template:
     metadata:
-      annotations:
-        sidecar.istio.io/inject: "true"    
+#      annotations:
+#        sidecar.istio.io/inject: "true"    
       labels:
         app: backend-service
     spec:
